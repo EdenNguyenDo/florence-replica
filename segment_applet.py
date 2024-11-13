@@ -1,12 +1,8 @@
 from flask import Flask, request, jsonify
 from PIL import Image
-from tests.test_python import image
-
 import utils
-from ultralytics import YOLO
 import threading
 from flask_cors import CORS
-
 from utils import run_example, plot_bbox
 
 # Initialize Flask app
@@ -14,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load YOLO model (use a pre-trained model or specify your custom model path)
-model = YOLO("FastSAM-s.pt")
+# model = YOLO("FastSAM-s.pt")
 
 
 task = utils.TaskType.OBJECT_DETECTION
@@ -32,7 +28,6 @@ def detect_objects():
 
     result = run_example(task, img)
     plot_bbox(result[task], img)
-
 
 
 
